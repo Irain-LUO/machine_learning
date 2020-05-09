@@ -1,0 +1,60 @@
+Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 22:20:52) [MSC v.1916 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> import numpy as np
+>>> a = np.array([1,2,3])
+>>> a.shape
+(3,)
+>>> # 扩展行数tile
+>>> np.tile(a, (6,1))
+array([[1, 2, 3],
+       [1, 2, 3],
+       [1, 2, 3],
+       [1, 2, 3],
+       [1, 2, 3],
+       [1, 2, 3]])
+>>> b = np.tile(a, (6,1))
+>>> b.shape
+(6, 3)
+>>> # 扩展列数tile
+>>> np.tile(a, 6)
+array([1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3])
+>>> b = np.tile(a,6)
+>>> b.shape
+(18,)
+>>> b
+array([[1, 2, 3],
+       [1, 2, 3],
+       [1, 2, 3],
+       [1, 2, 3],
+       [1, 2, 3],
+       [1, 2, 3]])
+>>> b.sum(axis=1) # 行求和
+array([6, 6, 6, 6, 6, 6])
+>>> b.sum(axis=0) # 列求和
+array([ 6, 12, 18])
+>>> c = b.sum(axis=0)
+>>> c
+array([ 6, 12, 18])
+>>> c.argsort() # 排序
+array([0, 1, 2], dtype=int32)
+>>> count = {}
+>>> count[3] = count.get(3,0)+1
+>>> count
+{3: 1}
+>>> count[3] = count.get(3,0)+1
+>>> count
+{3: 2}
+>>> count[5] = count.get(5,0)+1
+>>> count
+{3: 2, 5: 1}
+>>> count[5] = count.get(5,0)+1
+>>> count[5] = count.get(5,0)+1
+>>> count
+{3: 2, 5: 3}
+>>> import operator
+>>> count
+{3: 2, 5: 3}
+>>> sortcount = sorted(count.items(),key=operator.itemgetter(1),reverse=True)
+>>> sortcount[0][0]
+5
+>>> 
